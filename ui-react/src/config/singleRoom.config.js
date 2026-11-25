@@ -16,13 +16,6 @@ module.exports = {
       'occupied' : 'OBSAZENO',
     },
 
-    // Compact label for the corner status pill.
-    'shortStates' : {
-      'free' : 'Volno',
-      'soon' : 'Začíná brzy',
-      'occupied' : 'Obsazeno',
-    },
-
     // Hero block label above the organizer/time pair.
     'hero' : {
       'occupied' : 'Právě obsazuje',

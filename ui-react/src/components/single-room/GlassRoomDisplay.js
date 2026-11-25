@@ -26,7 +26,6 @@ const G_BUTTONS = G.buttons || {};
 const G_TIME = G.time || {};
 const G_HERO = G.hero || {};
 const G_STATES = G.states || {};
-const G_SHORT = G.shortStates || {};
 const G_AGENDA = G.agenda || {};
 const G_POPUP = G.popup || {};
 
@@ -74,36 +73,16 @@ const styles = {
     minWidth: 0,
     position: 'relative',
   },
-  topRow: {
-    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-    marginBottom: 4,
-  },
-  pill: {
-    display: 'inline-flex', alignItems: 'center', gap: 8,
-    padding: '6px 12px',
-    borderRadius: 999,
-    background: 'rgba(255,255,255,0.06)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    fontFamily: 'Geist Mono, monospace',
-    fontSize: 11, letterSpacing: '0.2em',
-    color: 'rgba(255,255,255,0.7)',
-    textTransform: 'uppercase',
-  },
-  pillDot: {
-    width: 6, height: 6, borderRadius: '50%',
-    boxShadow: '0 0 8px currentColor',
-    animation: 'glassPulse 2s ease-in-out infinite',
-  },
   roomLabel: {
     fontFamily: 'Geist Mono, monospace',
     fontSize: 11, letterSpacing: '0.24em',
     color: 'rgba(255,255,255,0.4)',
     textTransform: 'uppercase',
-    marginTop: 14,
   },
   roomName: {
-    fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em',
-    margin: '2px 0 0', lineHeight: 1,
+    fontSize: 48, fontWeight: 500, letterSpacing: '-0.025em',
+    margin: '6px 0 0', lineHeight: 1.05,
+    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
   },
   status: {
     fontSize: 60, fontWeight: 600, letterSpacing: '-0.035em',
@@ -575,9 +554,6 @@ class GlassRoomDisplay extends Component {
           const stateLabel = G_STATES[state] || (
             state === 'occupied' ? 'OBSAZENO' : state === 'soon' ? 'ZAČÍNÁ BRZY' : 'VOLNO'
           );
-          const shortLabel = G_SHORT[state] || (
-            state === 'occupied' ? 'Obsazeno' : state === 'soon' ? 'Začíná brzy' : 'Volno'
-          );
 
           const upcoming = heroVisible ? appts.slice(1, 6) : appts.slice(0, 5);
 
@@ -676,13 +652,6 @@ class GlassRoomDisplay extends Component {
               <div style={styles.inner}>
                 {/* MAIN STATUS CARD */}
                 <div style={styles.card}>
-                  <div style={styles.topRow}>
-                    <div style={styles.pill}>
-                      <span style={Object.assign({}, styles.pillDot, { color: glow.hex, background: glow.hex })} />
-                      <span>{shortLabel}</span>
-                    </div>
-                  </div>
-
                   <div style={styles.roomLabel}>{G.roomLabel || 'Zasedací místnost'}</div>
                   <div style={styles.roomName}>{room && room.Name}</div>
 
